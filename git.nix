@@ -40,7 +40,6 @@
   extraConfig = {
     core = {
       editor = "vim";
-      pager = "delta --dark";
       whitespace = "trailing-space,space-before-tab";
     };
 

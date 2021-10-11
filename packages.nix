@@ -10,7 +10,6 @@ let
   ];
 
   nixTools = with pkgs; [
-    nixFlakes
     cachix
     lorri
     niv

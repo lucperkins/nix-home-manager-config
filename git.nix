@@ -4,7 +4,7 @@
   package = pkgs.gitAndTools.gitFull;
   enable = true;
   userName = "Luc Perkins";
-  userEmail = "lucperkins@gmail.com";
+  userEmail = "luc.perkins@datadoghq.com";
   ignores = [
     ".cache/"
     ".DS_Store"
@@ -27,8 +27,9 @@
     ci = "commit";
     cm = "commit -m";
     cp = "commit -p";
+    crp = "cherry-pick";
     d = "diff";
-    dco = "commit -S --amend";
+    dco = "commit --amend --no-edit --signoff";
     s = "status";
     pr = "pull --rebase";
     st = "status";
@@ -39,7 +40,7 @@
   };
   extraConfig = {
     core = {
-      editor = "vim";
+      editor = "nvim";
       whitespace = "trailing-space,space-before-tab";
     };
 

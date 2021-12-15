@@ -11,7 +11,7 @@
       tag_symbol = "🔖 ";
     };
     git_state = {
-      format = "[\($state( $progress_current of $progress_total)\)]($style) ";
+      format = "[\($state($progress_current of $progress_total)\)]($style) ";
       cherry_pick = "[🍒 PICKING](bold red)";
     };
     git_status = {
@@ -28,7 +28,7 @@
     };
     hostname = {
       ssh_only = false;
-      format =  "on [$hostname](bold red) ";
+      format =  "on [work-box](bold red) ";
       disabled = false;
     };
     terraform = {

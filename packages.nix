@@ -19,19 +19,19 @@ let
     youtube-dl
     packer
     vagrant
-    nodejs
+    nodejs_latest
     age
     elixir
     jq
     terraform
     doctl
     yarn
-    cue
     hugo
     bat
     httpie
     dhall
     rustup
     cargo-make
+    wasmer
   ];
 in homePackages ++ gitTools ++ nixTools

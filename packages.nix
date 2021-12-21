@@ -1,6 +1,10 @@
 { pkgs }:
 
 let
+  rubyTools = with pkgs.rubyPackages; [
+    rbenv
+  ];
+
   gitTools = with pkgs.gitAndTools; [
     delta
     diff-so-fancy
@@ -28,6 +32,7 @@ let
     yarn
     hugo
     bat
+    heroku
     httpie
     dhall
     rustup

@@ -3,6 +3,7 @@
 {
   enable = true;
   shellAliases = {
+    hk = "heroku";
     grep = "grep --color=auto";
     diff = "diff --color=auto";
     dc = "docker compose";

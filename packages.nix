@@ -1,8 +1,8 @@
 { pkgs }:
 
 let
-  rubyTools = with pkgs.rubyPackages; [
-    rbenv
+  fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   gitTools = with pkgs.gitAndTools; [
@@ -20,23 +20,26 @@ let
   ];
 
   homePackages = with pkgs; [
-    youtube-dl
-    packer
-    vagrant
-    nodejs_latest
     age
-    elixir
-    jq
-    terraform
-    doctl
-    yarn
-    hugo
     bat
+    buf
+    cargo-make
+    dhall
+    doctl
+    elixir
     heroku
     httpie
-    dhall
+    hugo
+    jq
+    keybase
+    nodejs_latest
+    packer
+    rbenv
+    reattach-to-user-namespace
     rustup
-    cargo-make
-    wasmer
+    terraform
+    vagrant
+    yarn
+    youtube-dl
   ];
-in homePackages ++ gitTools ++ nixTools
+in homePackages ++ gitTools ++ nixTools ++ fonts

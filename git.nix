@@ -4,7 +4,7 @@
   package = pkgs.gitAndTools.gitFull;
   enable = true;
   userName = "Luc Perkins";
-  userEmail = "luc.perkins@datadoghq.com";
+  userEmail = "lucperkins@gmail.com";
   ignores = [
     ".cache/"
     ".DS_Store"

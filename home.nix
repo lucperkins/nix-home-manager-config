@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  nigpkgsRev = "21.11-pre";
+  nigpkgsRev = "22.05-pre";
   pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") {};
 
   externalPackages = import ./packages.nix { inherit pkgs; };
@@ -12,6 +12,12 @@ in {
   nixpkgs.config = {
     allowUnfree = true;
     allowUnsupportedSystem = true;
+  };
+
+  fonts = {
+    fontconfig = {
+      enable = true;
+    };
   };
 
   programs = {
@@ -47,6 +53,8 @@ in {
 
     tmux = import ./tmux.nix;
 
+    vscode = import ./vscode.nix { inherit pkgs; };
+
     zsh = import ./zsh.nix { fetchFromGitHub = pkgs.fetchFromGitHub; };
   };
 
@@ -57,6 +65,7 @@ in {
     sessionVariables = {
       EDITOR = "nvim";
       TERMINAL = "alacritty";
+      SHELL = "$HOME/.nix-profile/bin/zsh";
     };
   };
 

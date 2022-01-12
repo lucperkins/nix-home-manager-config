@@ -21,6 +21,10 @@ in {
   };
 
   programs = {
+    go = {
+      enable = true;
+    };
+
     direnv = {
       enable = true;
       

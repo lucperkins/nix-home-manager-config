@@ -2,7 +2,7 @@
 
 let
   fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+    (nerdfonts.override { fonts = (import ./fonts.nix); })
   ];
 
   gitTools = with pkgs.gitAndTools; [
@@ -24,21 +24,28 @@ let
     bat
     buf
     cargo-make
+    deno
     dhall
     doctl
+    doppler
     elixir
     heroku
     httpie
     hugo
     jq
     keybase
+    kubectx
+    kubectl
+    minikube
     nodejs_latest
     packer
     rbenv
     reattach-to-user-namespace
     rustup
     terraform
+    terragrunt
     vagrant
+    vector
     yarn
     youtube-dl
   ];

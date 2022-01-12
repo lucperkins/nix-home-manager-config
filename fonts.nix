@@ -1,3 +1,4 @@
-{
-  fonts = {};
-}
+[
+  "FiraCode"
+  "JetBrainsMono"
+]

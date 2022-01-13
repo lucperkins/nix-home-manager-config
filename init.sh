@@ -5,5 +5,3 @@ if [ -e ~/.env.sh ]; then
 fi
 
 eval "$(rbenv init -)"
-
-source <(buf zsh-completion)

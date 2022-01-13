@@ -7,7 +7,7 @@
     grep = "grep --color=auto";
     diff = "diff --color=auto";
     dc = "docker compose";
-    iq = "instruqt";
+    k = "kubectl";
     szsh = "source ~/.zshrc";
     cat = "bat";
     switch = "home-manager switch && source ~/.zshrc";

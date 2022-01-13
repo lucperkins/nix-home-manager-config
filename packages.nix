@@ -33,6 +33,7 @@ let
     httpie
     hugo
     jq
+    k9s
     keybase
     kubectx
     kubectl

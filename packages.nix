@@ -16,7 +16,6 @@ let
   nixTools = with pkgs; [
     cachix
     lorri
-    niv
   ];
 
   homePackages = with pkgs; [
@@ -38,7 +37,6 @@ let
     kubectl
     minikube
     nodejs_latest
-    packer
     rbenv
     reattach-to-user-namespace
     rustup

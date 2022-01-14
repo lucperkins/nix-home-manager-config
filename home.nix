@@ -51,7 +51,7 @@ in {
       enable = true;
     };
 
-    alacritty = import ./alacritty.nix;
+    # alacritty = import ./alacritty.nix;
 
     git = import ./git.nix { inherit pkgs; };
 

@@ -51,5 +51,9 @@
     credential.helper = "osxkeychain";
     pull.rebase = "false";
     init.defaultBranch = "main";
+
+    user = {
+      signingkey = "63921327F3433536";
+    };
   };
 }

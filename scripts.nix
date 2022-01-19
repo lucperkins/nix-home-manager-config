@@ -6,7 +6,7 @@ let
   '';
 
   git-hash = writeScriptBin "git-hash" ''
-    nix-prefetch-url --unpack https://github.com/$1/$2/archive/$3.tar.gz
+    nix-prefetch-url --type sha256 --unpack https://github.com/$1/$2/archive/$3.tar.gz
   '';
 
   wo = writeScriptBin "wo" ''

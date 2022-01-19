@@ -23,12 +23,14 @@ let
     bat
     buf
     cargo-make
+    cue
     deno
     dhall
     doctl
     doppler
     elixir
     heroku
+    htmltest
     httpie
     hugo
     jq

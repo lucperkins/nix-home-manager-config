@@ -14,6 +14,7 @@
     garbage = "nix-collect-garbage";
     reload = "switch && garbage";
     we = "watchexec";
+    wt = "ansiweather -l \"Portland, OR\"";
   };
   enableAutosuggestions = true;
   enableCompletion = true;
@@ -54,15 +55,6 @@
         repo = "macos";
         rev = "76bb298dc0ff5c5a1c640fe8f33f09c68b9af239";
         sha256 = "13mq0dq2y7d4m5cxxj13mbplk53kgg3j3f2id89klaw28kh9jrvs";
-      };
-    }
-    {
-      name = "ansiweather";
-      src = fetchFromGitHub {
-        owner = "fcambus";
-	repo = "ansiweather";
-	rev = "4ead90925991321502746aa1a2cc5bd6983c2c01";
-	sha256 = "0xhsavnsw9zc885al92mdq0mwpyz3v28jjs4zgvav482knla3j93";
       };
     }
   ];

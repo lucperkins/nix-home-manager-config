@@ -2,9 +2,14 @@
 
 let
   nigpkgsRev = "22.05-pre";
+
+  # An arbitrary commit that's much "later" than the release channel
+  laterRev = "6749f353af4fff42d5837d97d405e0aae9e8c3ad";
+
+  later = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${laterRev}.tar.gz") {};
   pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") {};
 
-  externalPackages = import ./packages.nix { inherit pkgs; };
+  externalPackages = import ./packages.nix { inherit pkgs later; };
   customScripts = import ./scripts.nix { writeScriptBin = pkgs.writeScriptBin; };
 
   allPackages = externalPackages ++ customScripts;

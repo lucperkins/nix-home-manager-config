@@ -1,6 +1,10 @@
-{ pkgs }:
+{ pkgs, later }:
 
 let
+  overrides = with later; [
+    buf
+  ];
+
   fonts = with pkgs; [
     (nerdfonts.override { fonts = (import ./fonts.nix); })
   ];
@@ -21,7 +25,6 @@ let
   homePackages = with pkgs; [
     age
     bat
-    buf
     cargo-make
     cue
     deno
@@ -49,4 +52,4 @@ let
     yarn
     youtube-dl
   ];
-in homePackages ++ gitTools ++ nixTools ++ fonts
+in homePackages ++ gitTools ++ nixTools ++ fonts ++ overrides

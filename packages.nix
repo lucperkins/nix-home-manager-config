@@ -3,6 +3,7 @@
 let
   overrides = with later; [
     buf
+    cue
   ];
 
   fonts = with pkgs; [
@@ -25,8 +26,9 @@ let
   homePackages = with pkgs; [
     age
     bat
+    bazelisk
+    cargo-edit
     cargo-make
-    cue
     deno
     dhall
     doctl
@@ -42,11 +44,13 @@ let
     kubectl
     minikube
     nodejs_latest
+    protobuf
     rbenv
     reattach-to-user-namespace
     rustup
     terraform
     terragrunt
+    tree
     vagrant
     vector
     yarn

@@ -15,7 +15,6 @@
     ".elixir_ls/"
     ".vscode/"
     "npm-debug.log"
-    "shell.nix"
   ];
   aliases = {
     ba = "branch -a";

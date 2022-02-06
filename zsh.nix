@@ -3,6 +3,7 @@
 {
   enable = true;
   shellAliases = {
+    bazel = "bazelisk";
     hk = "heroku";
     grep = "grep --color=auto";
     diff = "diff --color=auto";
@@ -15,6 +16,7 @@
     reload = "switch && garbage";
     we = "watchexec";
     wt = "ansiweather -l \"Portland, OR\"";
+    y = "yarn";
   };
   enableAutosuggestions = true;
   enableCompletion = true;

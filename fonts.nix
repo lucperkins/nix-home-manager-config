@@ -1,4 +1,5 @@
 [
+  "CascadiaCode"
   "FiraCode"
   "JetBrainsMono"
 ]

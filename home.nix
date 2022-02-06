@@ -4,7 +4,7 @@ let
   nigpkgsRev = "22.05-pre";
 
   # An arbitrary commit that's much "later" than the release channel
-  laterRev = "6749f353af4fff42d5837d97d405e0aae9e8c3ad";
+  laterRev = "baca640798571218743fca3cd665194b3af9d16b";
 
   later = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${laterRev}.tar.gz") {};
   pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") {};
@@ -17,6 +17,8 @@ in {
   nixpkgs.config = {
     allowUnfree = true;
     allowUnsupportedSystem = true;
+    extra-platforms = [ "aarch64-darwin" ];
+    experimental-features = "nix-command flakes";
   };
 
   fonts = {

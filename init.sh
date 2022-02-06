@@ -6,12 +6,15 @@ if [ -e ~/.env.sh ]; then
   . ~/.env.sh
 fi
 
+source <(cue completion zsh)
+
 # rbenv setup
 eval "$(rbenv init -)"
 
 # Go setup
 eval "$(go env)"
 
-export PATH="${GOPATH}"/bin:${PATH}
+export PATH="${GOPATH}/bin":"${PATH}"
+export PATH="${HOME}/.cargo/bin":"${PATH}"
 
 bindkey -e

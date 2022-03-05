@@ -4,6 +4,7 @@ let
   overrides = with later; [
     buf
     cue
+    go
   ];
 
   fonts = with pkgs; [
@@ -11,7 +12,6 @@ let
   ];
 
   gitTools = with pkgs.gitAndTools; [
-    delta
     diff-so-fancy
     git-codeowners
     gitflow
@@ -25,16 +25,19 @@ let
 
   homePackages = with pkgs; [
     age
+    asciinema
     bat
     bazelisk
     cargo-edit
     cargo-make
+    cargo-udeps
     deno
     dhall
     doctl
     doppler
     elixir
     heroku
+    goimports
     htmltest
     httpie
     hugo
@@ -52,6 +55,7 @@ let
     terragrunt
     tree
     vagrant
+    vale
     vector
     yarn
     youtube-dl

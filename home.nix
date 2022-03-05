@@ -1,10 +1,9 @@
-{ config, ... }:
-
 let
   nigpkgsRev = "22.05-pre";
 
-  # An arbitrary commit that's much "later" than the release channel
-  laterRev = "baca640798571218743fca3cd665194b3af9d16b";
+  # An arbitrary commit that's much "later" than the release channel. Used for any packages
+  # that aren't yet in the target nixpkgs,
+  laterRev = "2ec61aa313e1596414768bd9b5127a9671233585";
 
   later = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${laterRev}.tar.gz") {};
   pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") {};
@@ -28,10 +27,6 @@ in {
   };
 
   programs = {
-    go = {
-      enable = true;
-    };
-
     direnv = {
       enable = true;
       

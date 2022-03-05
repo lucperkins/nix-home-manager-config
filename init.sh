@@ -14,6 +14,10 @@ eval "$(rbenv init -)"
 # Go setup
 eval "$(go env)"
 
+# Buf setup
+eval "$(buf completion zsh)"
+
+# PATH
 export PATH="${GOPATH}/bin":"${PATH}"
 export PATH="${HOME}/.cargo/bin":"${PATH}"
 

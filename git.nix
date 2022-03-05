@@ -1,8 +1,16 @@
 { pkgs }:
 
 {
-  package = pkgs.gitAndTools.gitFull;
   enable = true;
+
+  delta = {
+    enable = true;
+  };
+
+  lfs = {
+    enable = true;
+  };
+
   userName = "Luc Perkins";
   userEmail = "lucperkins@gmail.com";
   ignores = [

@@ -30,6 +30,7 @@ let
     doppler
     elixir
     heroku
+    htmltest
     httpie
     hugo
     jq
@@ -39,6 +40,7 @@ let
     kubectl
     minikube
     nodejs_latest
+    nvm
     packer
     rbenv
     reattach-to-user-namespace

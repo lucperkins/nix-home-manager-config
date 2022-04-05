@@ -12,7 +12,6 @@
     cat = "bat";
     switch = "home-manager switch && source ~/.zshrc";
     garbage = "nix-collect-garbage";
-    reload = "switch && garbage";
     we = "watchexec";
   };
   enableAutosuggestions = true;

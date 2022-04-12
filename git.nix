@@ -3,7 +3,7 @@
 {
   enable = true;
 
-  packages = pkgs.gitAndTools.gitFull;
+  package = pkgs.gitAndTools.gitFull;
 
   delta = {
     enable = true;

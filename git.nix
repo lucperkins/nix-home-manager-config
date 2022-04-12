@@ -3,6 +3,8 @@
 {
   enable = true;
 
+  packages = pkgs.gitAndTools.gitFull;
+
   delta = {
     enable = true;
   };
@@ -60,7 +62,7 @@
     init.defaultBranch = "main";
 
     user = {
-      signingkey = "63921327F3433536";
+      signingkey = "3987C314C5E59CBF";
     };
   };
 }

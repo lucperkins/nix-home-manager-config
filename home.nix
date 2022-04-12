@@ -1,31 +1,45 @@
 let
-  nigpkgsRev = "22.05-pre";
+  # Borrow helper functions
+  helpers = import ./helpers.nix;
 
-  # An arbitrary commit that's much "later" than the release channel. Used for any packages
-  # that aren't yet in the target nixpkgs,
-  laterRev = "2ec61aa313e1596414768bd9b5127a9671233585";
+  # The specific revision of nixpkgs I pin everything to
+  nigpkgsRev = "e1118817a12dba39081d9e70ae52dd38aa184c2e";
 
-  later = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${laterRev}.tar.gz") {};
-  pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") {};
+  # The pinned nixpkgs I'll use throughout
+  pkgs = helpers.nixpkgsRef nigpkgsRev;
 
-  externalPackages = import ./packages.nix { inherit pkgs later; };
+  # I define the external packages I want to use in a separate file
+  externalPackages = import ./packages.nix { inherit pkgs ; };
+
+  # Some custom helper scripts I use
   customScripts = import ./scripts.nix { writeScriptBin = pkgs.writeScriptBin; };
 
-  allPackages = externalPackages ++ customScripts;
+  # Fonts that I use in my environment
+  fonts = with pkgs; [
+    (nerdfonts.override { fonts = (import ./fonts.nix); })
+  ];
+
+  # The total set of packages to install
+  packages = externalPackages ++ customScripts ++ fonts;
 in {
-  nixpkgs.config = {
-    allowUnfree = true;
-    allowUnsupportedSystem = true;
-    extra-platforms = [ "aarch64-darwin" ];
-    experimental-features = "nix-command flakes";
+  # nixpkgs configuration
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnsupportedSystem = true;
+      extra-platforms = [ "aarch64-darwin" ];
+      experimental-features = "nix-command flakes";
+    };
   };
 
+  # Allow Nix to handle my fonts
   fonts = {
     fontconfig = {
       enable = true;
     };
   };
 
+  # Home Manager extensions
   programs = {
     direnv = {
       enable = true;
@@ -33,6 +47,10 @@ in {
       nix-direnv = {
         enable = true;
       };
+    };
+
+    go = {
+      enable = true;
     };
     
     home-manager = {
@@ -47,7 +65,9 @@ in {
 
     neovim = import ./neovim.nix { vimPlugins = pkgs.vimPlugins; };
 
-    starship = import ./starship.nix;
+    starship = import ./starship.nix {
+      inherit pkgs;
+    };
 
     gpg = {
       enable = true;
@@ -67,7 +87,7 @@ in {
   home = {
     username = "lucperkins";
     homeDirectory = "/Users/lucperkins";
-    packages = allPackages;
+    inherit packages;
     sessionVariables = {
       EDITOR = "nvim";
       TERMINAL = "alacritty";

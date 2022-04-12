@@ -1,16 +1,6 @@
-{ pkgs, later }:
+{ pkgs }:
 
 let
-  overrides = with later; [
-    buf
-    cue
-    go
-  ];
-
-  fonts = with pkgs; [
-    (nerdfonts.override { fonts = (import ./fonts.nix); })
-  ];
-
   gitTools = with pkgs.gitAndTools; [
     diff-so-fancy
     git-codeowners
@@ -23,21 +13,34 @@ let
     lorri
   ];
 
+  pythonTools = with pkgs.python.pkgs; [
+    pip
+  ];
+
+  macTools = with pkgs.darwin.apple_sdk.frameworks; [
+    CoreServices
+    Foundation
+    Security
+  ];
+
   homePackages = with pkgs; [
     age
     asciinema
     bat
     bazelisk
+    buf
     cargo-edit
     cargo-make
     cargo-udeps
+    coreutils
+    cue
     deno
     dhall
     doctl
     doppler
-    elixir
+    findutils
+    gotools
     heroku
-    goimports
     htmltest
     httpie
     hugo
@@ -45,12 +48,16 @@ let
     keybase
     kubectx
     kubectl
+    libiconv
     minikube
+    ncurses
     nodejs_latest
+    pinentry_mac
     protobuf
     rbenv
     reattach-to-user-namespace
     rustup
+    subversion
     terraform
     terragrunt
     tree
@@ -60,4 +67,4 @@ let
     yarn
     youtube-dl
   ];
-in homePackages ++ gitTools ++ nixTools ++ fonts ++ overrides
+in macTools ++ homePackages ++ gitTools ++ nixTools ++ pythonTools

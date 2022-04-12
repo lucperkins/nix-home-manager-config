@@ -4,11 +4,9 @@
   enable = true;
   shellAliases = {
     bazel = "bazelisk";
-    hk = "heroku";
     grep = "grep --color=auto";
     diff = "diff --color=auto";
     dc = "docker compose";
-    iq = "instruqt";
     szsh = "source ~/.zshrc";
     cat = "bat";
     switch = "home-manager switch && source ~/.zshrc";

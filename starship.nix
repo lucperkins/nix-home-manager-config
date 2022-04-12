@@ -1,6 +1,13 @@
-{
+{ pkgs }:
+
+let
+  starship = pkgs.callPackage ./special/starship.nix {
+    inherit pkgs;
+  };
+in {
   enable = true;
   enableZshIntegration = true;
+  package = starship;
   settings = {
     add_newline = false;
     git_branch = {

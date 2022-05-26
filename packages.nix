@@ -23,6 +23,9 @@ let
     Security
   ];
 
+  rustTools = with pkgs; [
+  ];
+
   homePackages = with pkgs; [
     age
     asciinema
@@ -32,6 +35,7 @@ let
     cargo-edit
     cargo-make
     cargo-udeps
+    cmake
     coreutils
     cue
     deno
@@ -44,19 +48,21 @@ let
     htmltest
     httpie
     hugo
-    jq
     keybase
     kubectx
     kubectl
     libiconv
+    litestream
     minikube
     ncurses
     nodejs_latest
+    pandoc
     pinentry_mac
     protobuf
     rbenv
     reattach-to-user-namespace
     rustup
+    sqlite
     subversion
     terraform
     terragrunt
@@ -64,7 +70,8 @@ let
     vagrant
     vale
     vector
+    xelatex
     yarn
     youtube-dl
   ];
-in macTools ++ homePackages ++ gitTools ++ nixTools ++ pythonTools
+in macTools ++ homePackages ++ gitTools ++ nixTools ++ pythonTools ++ rustTools

@@ -3,7 +3,7 @@ let
   helpers = import ./helpers.nix;
 
   # The specific revision of nixpkgs I pin everything to
-  nigpkgsRev = "e1118817a12dba39081d9e70ae52dd38aa184c2e";
+  nigpkgsRev = "e12e133539df48b832dd641e70fca9a7dd102f5f";
 
   # The pinned nixpkgs I'll use throughout
   pkgs = helpers.nixpkgsRef nigpkgsRev;
@@ -21,13 +21,14 @@ let
 
   # The total set of packages to install
   packages = externalPackages ++ customScripts ++ fonts;
+
+  jdk = pkgs.jdk8;
 in {
   # nixpkgs configuration
   nixpkgs = {
     config = {
       allowUnfree = true;
       allowUnsupportedSystem = true;
-      extra-platforms = [ "aarch64-darwin" ];
       experimental-features = "nix-command flakes";
     };
   };
@@ -81,7 +82,7 @@ in {
 
     vscode = import ./vscode.nix { inherit pkgs; };
 
-    zsh = import ./zsh.nix { fetchFromGitHub = pkgs.fetchFromGitHub; };
+    zsh = import ./zsh.nix { inherit pkgs; inherit jdk; };
   };
 
   home = {
@@ -95,5 +96,5 @@ in {
     };
   };
 
-  home.stateVersion = "21.05";
+  home.stateVersion = "22.05";
 }

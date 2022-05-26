@@ -1,6 +1,8 @@
-{ fetchFromGitHub }:
+{ pkgs, jdk }:
 
-{
+let
+  fetchFromGitHub = pkgs.fetchFromGitHub;
+in {
   enable = true;
   shellAliases = {
     bazel = "bazelisk";

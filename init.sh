@@ -22,4 +22,8 @@ export PATH="${GOPATH}/bin":"${PATH}"
 export PATH="${HOME}/.cargo/bin":"${PATH}"
 export PATH="$(brew --prefix)/bin":"${PATH}"
 
+export JAVA_HOME="$(readlink -e $(type -p javac) | sed  -e 's/\/bin\/javac//g')"
+
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+
 bindkey -e

@@ -70,7 +70,6 @@ let
     vagrant
     vale
     vector
-    xelatex
     yarn
     youtube-dl
   ];

@@ -40,7 +40,6 @@ let
     kubectl
     minikube
     nodejs_latest
-    nvm
     packer
     rbenv
     reattach-to-user-namespace

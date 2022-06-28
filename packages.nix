@@ -13,10 +13,6 @@ let
     lorri
   ];
 
-  pythonTools = with pkgs.python.pkgs; [
-    pip
-  ];
-
   macTools = with pkgs.darwin.apple_sdk.frameworks; [
     CoreServices
     Foundation
@@ -46,7 +42,6 @@ let
     gotools
     heroku
     htmltest
-    httpie
     hugo
     keybase
     kubectx
@@ -67,10 +62,8 @@ let
     terraform
     terragrunt
     tree
-    vagrant
     vale
-    vector
     yarn
     youtube-dl
   ];
-in macTools ++ homePackages ++ gitTools ++ nixTools ++ pythonTools ++ rustTools
+in macTools ++ homePackages ++ gitTools ++ nixTools ++ rustTools

@@ -3,7 +3,7 @@ let
   helpers = import ./helpers.nix;
 
   # The specific revision of nixpkgs I pin everything to
-  nigpkgsRev = "e12e133539df48b832dd641e70fca9a7dd102f5f";
+  nigpkgsRev = "58ffd047e02026baf222820472f2ab969f81ff24";
 
   # The pinned nixpkgs I'll use throughout
   pkgs = helpers.nixpkgsRef nigpkgsRev;

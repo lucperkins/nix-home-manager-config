@@ -56,7 +56,7 @@ in {
       enableAliases = true;
     };
 
-    neovim = import ./neovim.nix { vimPlugins = pkgs.vimPlugins; };
+    neovim = import ./neovim.nix { inherit (pkgs) vimPlugins; };
 
     starship = import ./starship.nix;
 

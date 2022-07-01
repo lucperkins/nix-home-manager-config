@@ -1,6 +1,14 @@
 { pkgs }:
 
 let
+  # Some custom helper scripts I use
+  customScripts = import ./scripts.nix { writeScriptBin = pkgs.writeScriptBin; };
+
+  # Fonts that I use in my environment
+  fonts = with pkgs; [
+    (nerdfonts.override { fonts = (import ./fonts.nix); })
+  ];
+
   gitTools = with pkgs.gitAndTools; [
     diff-so-fancy
     git-codeowners
@@ -75,4 +83,4 @@ let
     yarn
     youtube-dl
   ];
-in macTools ++ homePackages ++ gitTools ++ nixTools ++ rustTools ++ python ++ pythonTools
+in customScripts ++ fonts ++ macTools ++ homePackages ++ gitTools ++ nixTools ++ rustTools ++ python ++ pythonTools

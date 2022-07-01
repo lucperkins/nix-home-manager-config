@@ -1,35 +1,42 @@
 let
-  # Borrow helper functions
-  helpers = import ./helpers.nix;
+  system = builtins.currentSystem;
+  stateVersion = "22.05";
+  username = "lucperkins";
+  homeDirectory = "/Users/${username}";
 
   # The specific revision of nixpkgs I pin everything to
   nigpkgsRev = "9c544193df8a1e7f083a7d3261f78e71f588f3e7";
 
   # The pinned nixpkgs I'll use throughout
-  pkgs = helpers.nixpkgsRef nigpkgsRev;
-
-  # I define the external packages I want to use in a separate file
-  externalPackages = import ./packages.nix { inherit pkgs ; };
-
-  # Some custom helper scripts I use
-  customScripts = import ./scripts.nix { writeScriptBin = pkgs.writeScriptBin; };
-
-  # Fonts that I use in my environment
-  fonts = with pkgs; [
-    (nerdfonts.override { fonts = (import ./fonts.nix); })
-  ];
+  pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") {
+    inherit system;
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   # The total set of packages to install
-  packages = externalPackages ++ customScripts ++ fonts;
+  packages = import ./packages.nix { inherit pkgs ; };
 
+  # The JDK version I want to use
   jdk = pkgs.jdk8;
 in {
+  # initial home config
+  home = {
+    inherit homeDirectory packages stateVersion username;
+    sessionVariables = {
+      EDITOR = "nvim";
+      TERMINAL = "alacritty";
+      SHELL = "$HOME/.nix-profile/bin/zsh";
+    };
+  };
+
   # nixpkgs configuration
   nixpkgs = {
     config = {
+      inherit system;
       allowUnfree = true;
       allowUnsupportedSystem = true;
-      system = "aarch64-darwin";
       experimental-features = "nix-command flakes";
       extra-platforms = "aarch64-darwin x86_64-linux";
     };
@@ -84,19 +91,6 @@ in {
 
     vscode = import ./vscode.nix { inherit pkgs; };
 
-    zsh = import ./zsh.nix { inherit pkgs; inherit jdk; };
+    zsh = import ./zsh.nix { inherit jdk pkgs; };
   };
-
-  home = {
-    username = "lucperkins";
-    homeDirectory = "/Users/lucperkins";
-    inherit packages;
-    sessionVariables = {
-      EDITOR = "nvim";
-      TERMINAL = "alacritty";
-      SHELL = "$HOME/.nix-profile/bin/zsh";
-    };
-  };
-
-  home.stateVersion = "22.05";
 }

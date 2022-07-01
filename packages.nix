@@ -20,6 +20,18 @@ let
   ];
 
   rustTools = with pkgs; [
+    cargo-edit
+    cargo-make
+    cargo-udeps
+  ];
+
+  python = with pkgs; [
+    python39
+  ];
+
+  pythonTools = with pkgs.python39Packages; [
+    pip
+    virtualenv
   ];
 
   homePackages = with pkgs; [
@@ -28,9 +40,6 @@ let
     bat
     bazelisk
     buf
-    cargo-edit
-    cargo-make
-    cargo-udeps
     cmake
     coreutils
     cue
@@ -66,4 +75,4 @@ let
     yarn
     youtube-dl
   ];
-in macTools ++ homePackages ++ gitTools ++ nixTools ++ rustTools
+in macTools ++ homePackages ++ gitTools ++ nixTools ++ rustTools ++ python ++ pythonTools

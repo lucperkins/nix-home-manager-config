@@ -3,7 +3,7 @@ let
   helpers = import ./helpers.nix;
 
   # The specific revision of nixpkgs I pin everything to
-  nigpkgsRev = "58ffd047e02026baf222820472f2ab969f81ff24";
+  nigpkgsRev = "9c544193df8a1e7f083a7d3261f78e71f588f3e7";
 
   # The pinned nixpkgs I'll use throughout
   pkgs = helpers.nixpkgsRef nigpkgsRev;
@@ -29,7 +29,9 @@ in {
     config = {
       allowUnfree = true;
       allowUnsupportedSystem = true;
+      system = "aarch64-darwin";
       experimental-features = "nix-command flakes";
+      extra-platforms = "aarch64-darwin x86_64-linux";
     };
   };
 

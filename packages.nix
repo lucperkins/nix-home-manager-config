@@ -1,8 +1,11 @@
-{ pkgs }:
+{ homeDirectory, pkgs }:
 
 let
   # Some custom helper scripts I use
-  customScripts = import ./scripts.nix { writeScriptBin = pkgs.writeScriptBin; };
+  customScripts = import ./scripts.nix {
+    inherit (pkgs) writeScriptBin;
+    inherit homeDirectory;
+  };
 
   # Fonts that I use in my environment
   fonts = with pkgs; [

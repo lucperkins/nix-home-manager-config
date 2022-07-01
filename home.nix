@@ -1,7 +1,8 @@
-{ homeDirectory, pkgs, stateVersion, system, username }:
+{ homeDirectory, pkgs, system, username }:
 
 let
-  packages = import ./packages.nix { inherit pkgs; };
+  stateVersion = "22.11";
+  packages = import ./packages.nix { inherit homeDirectory pkgs; };
 in {
   # initial home config
   home = {
@@ -73,6 +74,6 @@ in {
 
     vscode = import ./vscode.nix { inherit pkgs; };
 
-    zsh = import ./zsh.nix { inherit pkgs; };
+    zsh = import ./zsh.nix { inherit homeDirectory pkgs username; };
   };
 }

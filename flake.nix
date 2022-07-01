@@ -7,24 +7,30 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager }:
+  outputs = { self, nixpkgs, home-manager, nur }:
     let
-      system = "aarch64-darwin";
       username = "lucperkins";
-      stateVersion = "22.11";
+      system = "aarch64-darwin";
       homeDirectory = "/Users/${username}";
 
       pkgs = import nixpkgs {
         inherit system;
 
+        overlays = [ nur.overlay ];
+
         config = {
           allowUnfree = true;
+          xdg = {
+            configHome = "${homeDirectory}";
+          };
         };
       };
-
-      homeConfig = (import ./home.nix { inherit homeDirectory pkgs stateVersion system username; });
+      homeConfig = (import ./home.nix {
+        inherit homeDirectory pkgs system username;
+      });
     in {
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;

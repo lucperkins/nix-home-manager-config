@@ -1,4 +1,4 @@
-{ pkgs }:
+{ homeDirectory, pkgs, username }:
 
 let
   fetchFromGitHub = pkgs.fetchFromGitHub;
@@ -11,9 +11,9 @@ in {
     dc = "docker compose";
     szsh = "source ~/.zshrc";
     cat = "bat";
-    switch = "home-manager switch && source ~/.zshrc";
     garbage = "nix-collect-garbage";
     reload = "switch && garbage";
+    switch = "home-manager switch --flake ${homeDirectory}/.config/nixpkgs && source ~/.zshrc";
     we = "watchexec";
     wt = "ansiweather -l \"Portland, OR\"";
     y = "yarn";

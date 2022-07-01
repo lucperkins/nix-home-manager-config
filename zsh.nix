@@ -1,4 +1,4 @@
-{ pkgs, jdk }:
+{ pkgs }:
 
 let
   fetchFromGitHub = pkgs.fetchFromGitHub;

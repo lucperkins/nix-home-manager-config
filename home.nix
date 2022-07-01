@@ -17,9 +17,6 @@ let
 
   # The total set of packages to install
   packages = import ./packages.nix { inherit pkgs ; };
-
-  # The JDK version I want to use
-  jdk = pkgs.jdk8;
 in {
   # initial home config
   home = {
@@ -91,6 +88,6 @@ in {
 
     vscode = import ./vscode.nix { inherit pkgs; };
 
-    zsh = import ./zsh.nix { inherit jdk pkgs; };
+    zsh = import ./zsh.nix { inherit pkgs; };
   };
 }

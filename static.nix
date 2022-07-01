@@ -1,0 +1,7 @@
+{
+  fontList = [
+    "CascadiaCode"
+    "FiraCode"
+    "JetBrainsMono"
+  ];
+}

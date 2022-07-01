@@ -8,8 +8,10 @@ let
   };
 
   # Fonts that I use in my environment
+  fontList = (import ./static.nix).fontList;
+
   fonts = with pkgs; [
-    (nerdfonts.override { fonts = (import ./fonts.nix); })
+    (nerdfonts.override { fonts = fontList; })
   ];
 
   gitTools = with pkgs.gitAndTools; [

@@ -1,20 +1,8 @@
+{ pkgs, system, username }:
+
 let
-  system = builtins.currentSystem;
   stateVersion = "22.05";
-  username = "lucperkins";
   homeDirectory = "/Users/${username}";
-
-  # The specific revision of nixpkgs I pin everything to
-  nigpkgsRev = "9c544193df8a1e7f083a7d3261f78e71f588f3e7";
-
-  # The pinned nixpkgs I'll use throughout
-  pkgs = import (fetchTarball "https://github.com/nixos/nixpkgs/archive/${nigpkgsRev}.tar.gz") {
-    inherit system;
-    config = {
-      allowUnfree = true;
-    };
-  };
-
   # The total set of packages to install
   packages = import ./packages.nix { inherit pkgs ; };
 in {

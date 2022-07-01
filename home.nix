@@ -1,10 +1,7 @@
-{ pkgs, system, username }:
+{ homeDirectory, pkgs, stateVersion, system, username }:
 
 let
-  stateVersion = "22.05";
-  homeDirectory = "/Users/${username}";
-  # The total set of packages to install
-  packages = import ./packages.nix { inherit pkgs ; };
+  packages = import ./packages.nix { inherit pkgs; };
 in {
   # initial home config
   home = {

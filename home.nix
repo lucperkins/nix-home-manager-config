@@ -58,9 +58,7 @@ in {
 
     neovim = import ./neovim.nix { vimPlugins = pkgs.vimPlugins; };
 
-    starship = import ./starship.nix {
-      inherit pkgs;
-    };
+    starship = import ./starship.nix;
 
     gpg = {
       enable = true;

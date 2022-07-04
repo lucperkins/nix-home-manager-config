@@ -44,6 +44,7 @@ in {
 
     go = {
       enable = true;
+      package = pkgs.go_1_18;
     };
     
     home-manager = {

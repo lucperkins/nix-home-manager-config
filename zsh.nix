@@ -18,7 +18,7 @@ in {
   enableAutosuggestions = true;
   enableCompletion = true;
   autocd = true;
-  initExtra = (builtins.readFile ./init.sh);
+  initExtra = (builtins.readFile ./scripts/init.sh);
 
   prezto = {
     enable = true;

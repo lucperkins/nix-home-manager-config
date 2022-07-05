@@ -2,7 +2,8 @@
 
 {
   enable = true;
-
+  userName = "Luc Perkins";
+  userEmail = "lucperkins@gmail.com";
   package = pkgs.gitAndTools.gitFull;
 
   delta = {
@@ -13,8 +14,6 @@
     enable = true;
   };
 
-  userName = "Luc Perkins";
-  userEmail = "lucperkins@gmail.com";
   ignores = [
     ".cache/"
     ".DS_Store"

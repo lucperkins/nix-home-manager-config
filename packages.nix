@@ -18,7 +18,6 @@ let
     diff-so-fancy
     git-codeowners
     gitflow
-    gh
   ];
 
   nixTools = with pkgs; [
@@ -50,7 +49,6 @@ let
   homePackages = with pkgs; [
     age
     asciinema
-    bat
     bazelisk
     buf
     cmake

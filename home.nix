@@ -3,27 +3,20 @@
 let
   stateVersion = "22.11";
   packages = import ./packages.nix { inherit homeDirectory pkgs; };
+  editor = "nvim";
 in {
   # initial home config
   home = {
     inherit homeDirectory packages stateVersion username;
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = editor;
       TERMINAL = "alacritty";
-      SHELL = "$HOME/.nix-profile/bin/zsh";
+      SHELL = "$(which zsh)";
     };
   };
 
   # nixpkgs configuration
-  nixpkgs = {
-    config = {
-      inherit system;
-      allowUnfree = true;
-      allowUnsupportedSystem = true;
-      experimental-features = "nix-command flakes";
-      extra-platforms = "aarch64-darwin x86_64-linux";
-    };
-  };
+  nixpkgs = import ./nixpkgs.nix { inherit system; };
 
   # Allow Nix to handle my fonts
   fonts = {
@@ -32,24 +25,28 @@ in {
     };
   };
 
-  # Home Manager extensions
   programs = {
+    bat = {
+      enable = true;
+    };
+
+    broot = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     direnv = {
       enable = true;
+      enableZshIntegration = true;
       
       nix-direnv = {
         enable = true;
       };
     };
 
-    go = {
+    dircolors = {
       enable = true;
-      package = pkgs.go_1_18;
-    };
-    
-    home-manager = {
-      enable = true;
-      path = "…";
+      enableZshIntegration = true;
     };
 
     exa = {
@@ -57,21 +54,81 @@ in {
       enableAliases = true;
     };
 
-    neovim = import ./neovim.nix { inherit (pkgs) vimPlugins; };
+    fzf = {
+      enable = true;
+      enableZshIntegration = true;
+    };
 
-    starship = import ./starship.nix;
+    gh = {
+      enable = true;
+      settings = {
+        inherit editor;
+        git_protocol = "ssh";
+        prompt = "enabled";
+        aliases = {
+          pvw = "pr view --web";
+          rvw = "repo view --web";
+        };
+      };
+    };
+
+    git = import ./git.nix { inherit pkgs; };
+
+    go = {
+      enable = true;
+      package = pkgs.go_1_18;
+    };
 
     gpg = {
       enable = true;
     };
 
-    # alacritty = import ./alacritty.nix;
+    home-manager = {
+      enable = true;
+      path = "…";
+    };
 
-    git = import ./git.nix { inherit pkgs; };
+    jq = {
+      enable = true;
+    };
+
+    just = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    keychain = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    neovim = import ./neovim.nix { inherit (pkgs) vimPlugins; };
+
+    nix-index = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+    pandoc = {
+      enable = true;
+      defaults = {
+        metadata = {
+          author = "Luc Perkins";
+        };
+      };
+    };
+
+    ssh = {
+      enable = true;
+    };
+
+    starship = import ./starship.nix;
 
     tmux = import ./tmux.nix;
 
     vscode = import ./vscode.nix { inherit pkgs; };
+
+    xdg = import ./xdg.nix;
 
     zsh = import ./zsh.nix { inherit homeDirectory pkgs username; };
   };

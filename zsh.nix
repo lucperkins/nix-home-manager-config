@@ -2,6 +2,7 @@
 
 let
   fetchFromGitHub = pkgs.fetchFromGitHub;
+  thisDir = builtins.toString ./.;
 in {
   enable = true;
   shellAliases = {
@@ -13,7 +14,7 @@ in {
     cat = "bat";
     garbage = "nix-collect-garbage";
     reload = "switch && garbage";
-    switch = "home-manager switch --flake ${homeDirectory}/.config/nixpkgs && source ~/.zshrc";
+    switch = "home-manager switch --flake ${thisDir} && source ~/.zshrc";
   };
   enableAutosuggestions = true;
   enableCompletion = true;

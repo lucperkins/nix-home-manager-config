@@ -1,4 +1,5 @@
-{ homeDirectory, pkgs }:
+{ homeDirectory
+, pkgs }:
 
 let
   # Some custom helper scripts I use
@@ -10,8 +11,8 @@ let
   # Fonts that I use in my environment
   fontList = (import ./static.nix).fontList;
 
-  fonts = with pkgs; [
-    (nerdfonts.override { fonts = fontList; })
+  fonts = with pkgs.nerdfonts; [
+    (override { fonts = fontList; })
   ];
 
   gitTools = with pkgs.gitAndTools; [
@@ -59,7 +60,6 @@ let
     doctl
     doppler
     findutils
-    gotools
     heroku
     htmltest
     hugo
@@ -71,7 +71,6 @@ let
     minikube
     ncurses
     nodejs_latest
-    pandoc
     pinentry_mac
     protobuf
     rbenv

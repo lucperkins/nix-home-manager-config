@@ -1,4 +1,5 @@
-{ homeDirectory, writeScriptBin }:
+{ homeDirectory
+, writeScriptBin }:
 
 let
   hasher = writeScriptBin "hasher" ''

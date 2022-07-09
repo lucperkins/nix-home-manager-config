@@ -1,4 +1,7 @@
-{ homeDirectory, pkgs, system, username }:
+{ homeDirectory
+, pkgs
+, system
+, username }:
 
 let
   stateVersion = "22.11";
@@ -128,8 +131,8 @@ in {
 
     vscode = import ./vscode.nix { inherit pkgs; };
 
-    xdg = import ./xdg.nix;
-
     zsh = import ./zsh.nix { inherit homeDirectory pkgs username; };
   };
+
+  xdg = import ./xdg.nix;
 }

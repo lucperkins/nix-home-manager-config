@@ -7,10 +7,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur.url = "github:nix-community/NUR";
   };
 
-  outputs = { self, nixpkgs, home-manager, nur }:
+  outputs = { self, nixpkgs, home-manager }:
     let
       username = "lucperkins";
       system = "aarch64-darwin";
@@ -19,7 +18,7 @@
       pkgs = import nixpkgs {
         inherit system;
 
-        overlays = [ nur.overlay ];
+        overlays = import ./overlays.nix;
 
         config = {
           allowUnfree = true;

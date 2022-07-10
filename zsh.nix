@@ -21,8 +21,4 @@ in {
   enableCompletion = true;
   autocd = true;
   initExtra = (builtins.readFile ./scripts/init.sh);
-
-  prezto = {
-    enable = true;
-  };
 }

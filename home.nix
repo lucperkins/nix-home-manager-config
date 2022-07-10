@@ -121,10 +121,6 @@ in {
       };
     };
 
-    ssh = {
-      enable = true;
-    };
-
     starship = import ./starship.nix;
 
     tmux = import ./tmux.nix;

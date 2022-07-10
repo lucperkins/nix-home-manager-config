@@ -25,3 +25,5 @@ export PATH="${HOME}/.cargo/bin":"${PATH}"
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 bindkey -e
+
+eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -52,6 +52,7 @@ let
     asciinema
     bazelisk
     buf
+    bun
     cmake
     coreutils
     cue
@@ -60,6 +61,7 @@ let
     doctl
     doppler
     findutils
+    gleam
     heroku
     htmltest
     hugo

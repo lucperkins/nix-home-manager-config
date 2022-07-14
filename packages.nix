@@ -78,6 +78,7 @@ let
     rbenv
     reattach-to-user-namespace
     rustup
+    skopeo
     sqlite
     subversion
     terraform

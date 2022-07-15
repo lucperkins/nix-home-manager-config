@@ -20,5 +20,5 @@ in {
   enableAutosuggestions = true;
   enableCompletion = true;
   autocd = true;
-  initExtra = (builtins.readFile ./scripts/init.sh);
+  initExtra = (builtins.readFile ../scripts/init.sh);
 }

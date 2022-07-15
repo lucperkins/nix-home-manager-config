@@ -18,7 +18,7 @@
       pkgs = import nixpkgs {
         inherit system;
 
-        overlays = import ./overlays.nix;
+        overlays = import ./nix/overlays.nix;
 
         config = {
           allowUnfree = true;

@@ -5,5 +5,5 @@
   baseIndex = 1;
   keyMode = "vi";
   shortcut = "b";
-  extraConfig = (builtins.readFile ./config/tmux.conf);
+  extraConfig = (builtins.readFile ../config/tmux.conf);
 }

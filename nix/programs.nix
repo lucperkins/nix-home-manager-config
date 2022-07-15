@@ -1,9 +1,10 @@
-{ pkgs }:
+{ editor
+, homeDirectory
+, pkgs
+, username }:
 
 {
-  bat = {
-    enable = true;
-  };
+  bat.enable = true;
 
   broot = {
     enable = true;
@@ -14,9 +15,7 @@
     enable = true;
     enableZshIntegration = true;
     
-    nix-direnv = {
-      enable = true;
-    };
+    nix-direnv.enable = true;
   };
 
   dircolors = {
@@ -54,18 +53,14 @@
     package = pkgs.go_1_18;
   };
 
-  gpg = {
-    enable = true;
-  };
+  gpg.enable = true;
 
   home-manager = {
     enable = true;
     path = "…";
   };
 
-  jq = {
-    enable = true;
-  };
+  jq.enable = true;
 
   just = {
     enable = true;
@@ -76,8 +71,6 @@
     enable = true;
     enableZshIntegration = true;
   };
-
-  lorri.enable = true;
 
   neovim = import ./neovim.nix { inherit (pkgs) vimPlugins; };
 
@@ -102,4 +95,4 @@
   vscode = import ./vscode.nix { inherit pkgs; };
 
   zsh = import ./zsh.nix { inherit homeDirectory pkgs username; };
-};
+}

@@ -5,7 +5,7 @@
 
 let
   stateVersion = "22.11";
-  packages = import ./nix/packages.nix { inherit homeDirectory pkgs; };
+  packages = import ./packages.nix { inherit homeDirectory pkgs; };
   editor = "nvim";
 in {
   # initial home config
@@ -19,7 +19,7 @@ in {
   };
 
   # nixpkgs configuration
-  nixpkgs = import ./nix/nixpkgs.nix { inherit system; };
+  nixpkgs = import ./nixpkgs.nix { inherit system; };
 
   # Allow Nix to handle my fonts
   fonts = {
@@ -28,7 +28,7 @@ in {
     };
   };
 
-  programs = import ./nix/programs.nix { inherit editor homeDirectory pkgs username; };
+  programs = import ./programs.nix { inherit editor homeDirectory pkgs username; };
 
-  xdg = import ./nix/xdg.nix;
+  xdg = import ./xdg.nix;
 }

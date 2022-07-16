@@ -1,7 +1,12 @@
-{ homeDirectory
+{ fakeHash
+, homeDirectory
 , writeScriptBin }:
 
 let
+  fake = writeScriptBin "fakeHash" ''
+    echo "${fakeHash}"
+  '';
+
   hasher = writeScriptBin "hasher" ''
     nix-hash --type sha256 --flat --base32 <(echo $1) | cut -c 1-32
   '';
@@ -22,5 +27,5 @@ let
     nix-shell --pure --run "$@"
   '';
 
-  all = [ hasher git-hash wo build-push run ];
+  all = [ fake hasher git-hash wo build-push run ];
 in all

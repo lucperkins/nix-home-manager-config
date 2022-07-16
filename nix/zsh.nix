@@ -14,7 +14,7 @@ in {
     szsh = "source ~/.zshrc";
     cat = "bat";
     garbage = "nix-collect-garbage";
-    reload = "switch && garbage";
+    reload = "switch";
     switch = "home-manager switch --flake $HOME/.config/nixpkgs && source ~/.zshrc";
   };
   enableAutosuggestions = true;

@@ -5,6 +5,7 @@ let
   # Some custom helper scripts I use
   customScripts = import ./scripts.nix {
     inherit (pkgs) writeScriptBin;
+    inherit (pkgs.lib) fakeHash;
     inherit homeDirectory;
   };
 
@@ -58,6 +59,7 @@ let
     cue
     deno
     dhall
+    dive
     doctl
     doppler
     findutils

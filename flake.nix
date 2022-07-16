@@ -27,7 +27,7 @@
           };
         };
       };
-      homeConfig = (import ./home.nix {
+      homeConfig = (import ./nix/home.nix {
         inherit homeDirectory pkgs system username;
       });
     in {

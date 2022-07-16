@@ -2,6 +2,8 @@
 , pkgs }:
 
 let
+  inherit (pkgs) darwin gitAndTools nerdfonts nodePackages python39Packages;
+
   # Some custom helper scripts I use
   customScripts = import ./scripts.nix {
     inherit (pkgs) writeScriptBin;
@@ -12,11 +14,11 @@ let
   # Fonts that I use in my environment
   fontList = (import ./static.nix).fontList;
 
-  fonts = with pkgs.nerdfonts; [
+  fonts = with nerdfonts; [
     (override { fonts = fontList; })
   ];
 
-  gitTools = with pkgs.gitAndTools; [
+  gitTools = with gitAndTools; [
     diff-so-fancy
     git-codeowners
     gitflow
@@ -27,7 +29,7 @@ let
     lorri
   ];
 
-  macTools = with pkgs.darwin.apple_sdk.frameworks; [
+  macTools = with darwin.apple_sdk.frameworks; [
     CoreServices
     Foundation
     Security
@@ -43,9 +45,13 @@ let
     python39
   ];
 
-  pythonTools = with pkgs.python39Packages; [
+  pythonTools = with python39Packages; [
     pip
     virtualenv
+  ];
+
+  nodeTools = with nodePackages; [
+    pnpm
   ];
 
   homePackages = with pkgs; [
@@ -63,6 +69,7 @@ let
     doctl
     doppler
     findutils
+    gcc
     gleam
     heroku
     htmltest
@@ -90,4 +97,4 @@ let
     yarn
     youtube-dl
   ];
-in customScripts ++ fonts ++ macTools ++ homePackages ++ gitTools ++ nixTools ++ rustTools ++ python ++ pythonTools
+in customScripts ++ fonts ++ macTools ++ homePackages ++ gitTools ++ nixTools ++ rustTools ++ python ++ pythonTools ++ nodeTools

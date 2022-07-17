@@ -15,10 +15,13 @@
       system = "aarch64-darwin";
       homeDirectory = "/Users/${username}";
 
-      pkgs = import nixpkgs {
-        inherit system;
+      overrides = (import ./nix/static.nix).overrides;
+      overlays = import ./nix/overlays.nix {
+        inherit (overrides) hugo;
+      };
 
-        overlays = import ./nix/overlays.nix;
+      pkgs = import nixpkgs {
+        inherit overlays system;
 
         config = {
           allowUnfree = true;

@@ -7,6 +7,7 @@ let
 in {
   enable = true;
   shellAliases = {
+    npm = "pnpm";
     grep = "grep --color=auto";
     diff = "diff --color=auto";
     dc = "docker compose";

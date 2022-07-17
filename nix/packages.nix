@@ -71,6 +71,7 @@ let
     findutils
     gcc
     gleam
+    gotools
     heroku
     htmltest
     hugo
@@ -81,7 +82,7 @@ let
     litestream
     minikube
     ncurses
-    nodejs_latest
+    nodejs-16_x
     pinentry_mac
     protobuf
     rbenv
@@ -93,6 +94,7 @@ let
     terraform
     terragrunt
     tree
+    vagrant
     vale
     yarn
     youtube-dl

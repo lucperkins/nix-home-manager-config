@@ -2,7 +2,7 @@
 
 let
   hugoOverlay = (self: super: {
-    hugo = super.hugo.overrideAttrs (old: {
+    hugo = super.hugo.overrideAttrs (_: {
       version = hugo.version;
 
       src = super.fetchFromGitHub {
@@ -11,10 +11,11 @@ let
         sha256 = hugo.sha256;
         rev = "v${hugo.version}";
       };
-      proxyVendor = false;
+
+      vendorSha256 = hugo.vendorSha256;
     });
   });
 in
 [
-  #hugoOverlay doesn't work for some reason
+  #hugoOverlay
 ]

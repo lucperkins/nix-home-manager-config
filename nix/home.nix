@@ -12,14 +12,23 @@ in {
   home = {
     inherit homeDirectory packages stateVersion username;
     sessionVariables = {
-      EDITOR = editor;
+      DIRENV_LOG_FORMAT = "";
       TERMINAL = "alacritty";
-      SHELL = "$(which zsh)";
+      SHELL = "${pkgs.zsh}/bin/zsh";
+      EDITOR = "${pkgs.neovim}/bin/${editor}";
     };
   };
 
-  # nixpkgs configuration
-  nixpkgs = import ./nixpkgs.nix { inherit system; };
+  nix = {
+    package = pkgs.nix;
+    settings = {
+      sandbox = true;
+      substituters = [
+        "https://cache.nixos.org"
+      ];
+      experimental-features = ["flakes" "nix-command"];
+    };
+  };
 
   # Allow Nix to handle my fonts
   fonts = {

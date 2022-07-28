@@ -38,6 +38,7 @@ let
   rustTools = with pkgs; [
     cargo-edit
     cargo-make
+    cargo-profiler
     cargo-udeps
   ];
 
@@ -54,6 +55,8 @@ let
     pnpm
   ];
 
+  customPackages = import ./custom.nix { inherit pkgs; };
+
   homePackages = with pkgs; [
     age
     asciinema
@@ -63,7 +66,8 @@ let
     cmake
     coreutils
     cue
-    deno
+    dapr-cli
+    #deno (currently broken)
     dhall
     dive
     doctl
@@ -94,9 +98,10 @@ let
     terraform
     terragrunt
     tree
+    treefmt
     vagrant
     vale
     yarn
     youtube-dl
   ];
-in customScripts ++ fonts ++ macTools ++ homePackages ++ gitTools ++ nixTools ++ rustTools ++ python ++ pythonTools ++ nodeTools
+in customScripts ++ fonts ++ macTools ++ gitTools ++ nixTools ++ rustTools ++ python ++ pythonTools ++ nodeTools ++ homePackages ++ customPackages

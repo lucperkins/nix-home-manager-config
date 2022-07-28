@@ -79,6 +79,10 @@
     enableZshIntegration = true;
   };
 
+  nushell = {
+    enable = true;
+  };
+
   pandoc = {
     enable = true;
     defaults = {

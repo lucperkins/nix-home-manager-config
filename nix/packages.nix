@@ -29,7 +29,7 @@ let
 
   python = with pkgs; [ python39 ];
 
-  pythonTools = with python39Packages; [ pip virtualenv ];
+  pythonTools = with python39Packages; [ httpie pip virtualenv ];
 
   nodeTools = with nodePackages; [ pnpm ];
 
@@ -44,13 +44,15 @@ let
     cmake
     coreutils
     cue
+    dagger
     dapr-cli
-    #deno (currently broken)
     dhall
     dive
     doctl
     doppler
+    elixir
     findutils
+    flyctl
     gcc
     gleam
     gotools
@@ -62,10 +64,13 @@ let
     kubectl
     libiconv
     litestream
+    maven
     minikube
     ncurses
     nodejs-16_x
+    open-policy-agent
     pinentry_mac
+    pkg-config
     protobuf
     rbenv
     reattach-to-user-namespace
@@ -80,8 +85,15 @@ let
     treefmt
     vagrant
     vale
+    wget
     yarn
     youtube-dl
+    yt-dlp
+  ];
+
+  broken = with pkgs; [
+    deno
+    materialize
   ];
 in customScripts ++ fonts ++ macTools ++ gitTools ++ nixTools ++ rustTools
 ++ python ++ pythonTools ++ nodeTools ++ homePackages ++ customPackages

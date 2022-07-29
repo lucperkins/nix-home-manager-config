@@ -13,6 +13,7 @@
   ignores = [
     ".cache/"
     ".DS_Store"
+    ".direnv/"
     ".idea/"
     "*.swp"
     "built-in-stubs.jar"

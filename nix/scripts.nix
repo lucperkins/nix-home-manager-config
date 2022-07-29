@@ -1,8 +1,10 @@
-{ fakeHash
-, homeDirectory
-, writeScriptBin }:
+{ fakeHash, homeDirectory, writeScriptBin }:
 
 let
+  build-push = writeScriptBin "build-push" ''
+    nix-build '<nixpkgs>' -A $1 | cachix push lucperkins-dev && rm result
+  '';
+
   fake = writeScriptBin "fakeHash" ''
     echo "${fakeHash}"
   '';
@@ -19,13 +21,9 @@ let
     readlink $(which $1)
   '';
 
-  build-push = writeScriptBin "build-push" ''
-    nix-build '<nixpkgs>' -A $1 | cachix push lucperkins-dev && rm result
-  '';
-
   run = writeScriptBin "run" ''
     nix-shell --pure --run "$@"
   '';
 
-  all = [ fake hasher git-hash wo build-push run ];
+  all = [ build-push fake hasher git-hash wo run ];
 in all

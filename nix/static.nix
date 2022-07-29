@@ -8,9 +8,5 @@
     };
   };
 
-  fontList = [
-    "CascadiaCode"
-    "FiraCode"
-    "JetBrainsMono"
-  ];
+  fontList = [ "CascadiaCode" "FiraCode" "JetBrainsMono" ];
 }

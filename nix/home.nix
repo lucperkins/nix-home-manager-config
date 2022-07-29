@@ -1,7 +1,4 @@
-{ homeDirectory
-, pkgs
-, system
-, username }:
+{ homeDirectory, nixpkgs, pkgs, system, username }:
 
 let
   stateVersion = "22.11";
@@ -21,23 +18,19 @@ in {
 
   nix = {
     package = pkgs.nix;
+    registry.nixpkgs.flake = nixpkgs;
     settings = {
       sandbox = true;
-      substituters = [
-        "https://cache.nixos.org"
-      ];
-      experimental-features = ["flakes" "nix-command"];
+      substituters = [ "https://cache.nixos.org" ];
+      experimental-features = [ "flakes" "nix-command" ];
     };
   };
 
   # Allow Nix to handle my fonts
-  fonts = {
-    fontconfig = {
-      enable = true;
-    };
-  };
+  fonts = { fontconfig = { enable = true; }; };
 
-  programs = import ./programs.nix { inherit editor homeDirectory pkgs username; };
+  programs =
+    import ./programs.nix { inherit editor homeDirectory pkgs username; };
 
   xdg = import ./xdg.nix;
 }

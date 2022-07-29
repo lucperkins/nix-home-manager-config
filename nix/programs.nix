@@ -1,7 +1,4 @@
-{ editor
-, homeDirectory
-, pkgs
-, username }:
+{ editor, homeDirectory, pkgs, username }:
 
 {
   bat.enable = true;
@@ -14,7 +11,7 @@
   direnv = {
     enable = true;
     enableZshIntegration = true;
-    
+
     nix-direnv.enable = true;
   };
 
@@ -79,18 +76,14 @@
     enableZshIntegration = true;
   };
 
-  nushell = {
-    enable = true;
-  };
+  nushell = { enable = true; };
 
   pandoc = {
     enable = true;
-    defaults = {
-      metadata = {
-        author = "Luc Perkins";
-      };
-    };
+    defaults = { metadata = { author = "Luc Perkins"; }; };
   };
+
+  readline = { enable = true; };
 
   starship = import ./starship.nix;
 

@@ -16,30 +16,27 @@
       homeDirectory = "/Users/${username}";
 
       overrides = (import ./nix/static.nix).overrides;
-      overlays = import ./nix/overlays.nix {
-        inherit (overrides) hugo;
-      };
+      overlays = import ./nix/overlays.nix { inherit (overrides) hugo; };
 
       pkgs = import nixpkgs {
         inherit overlays system;
 
         config = {
           allowUnfree = true;
-          xdg = {
-            configHome = "${homeDirectory}";
-          };
+          xdg = { configHome = "${homeDirectory}"; };
         };
       };
       homeConfig = (import ./nix/home.nix {
-        inherit homeDirectory pkgs system username;
+        inherit homeDirectory nixpkgs pkgs system username;
       });
     in {
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      homeConfigurations.${username} =
+        home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-        modules = [
-          homeConfig
-        ];
-      };
+          modules = [ homeConfig ];
+
+          extraSpecialArgs = { inherit nixpkgs; };
+        };
     };
 }

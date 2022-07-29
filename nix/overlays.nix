@@ -15,7 +15,6 @@ let
       vendorSha256 = hugo.vendorSha256;
     });
   });
-in
-[
+in [
   #hugoOverlay
 ]

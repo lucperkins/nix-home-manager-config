@@ -1,21 +1,21 @@
-{ homeDirectory
-, pkgs
-, username }:
+{ homeDirectory, pkgs, username }:
 
-let
-  fetchFromGitHub = pkgs.fetchFromGitHub;
+let fetchFromGitHub = pkgs.fetchFromGitHub;
 in {
   enable = true;
   shellAliases = {
-    npm = "pnpm";
     grep = "grep --color=auto";
     diff = "diff --color=auto";
     dc = "docker compose";
     szsh = "source ~/.zshrc";
     cat = "bat";
     garbage = "nix-collect-garbage";
-    reload = "switch";
-    switch = "home-manager switch --flake $HOME/.config/nixpkgs && source ~/.zshrc";
+
+    # Nix stuff (https://alexfedoseev.com/blog/post/nix-time)
+    xx = "home-manager switch --flake $HOME/.config/nixpkgs && source ~/.zshrc";
+    xs = "nix-env --query --available --attr-path ";
+    xsp = "nix-env --file '<nixpkgs>' --query --available --attr-path -A ";
+    xgc = "nix-env --delete-generations old && nix-store --gc";
   };
   enableAutosuggestions = true;
   enableCompletion = true;

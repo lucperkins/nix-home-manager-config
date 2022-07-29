@@ -6,13 +6,9 @@
   userEmail = "lucperkins@gmail.com";
   package = pkgs.gitAndTools.gitFull;
 
-  delta = {
-    enable = true;
-  };
+  delta = { enable = true; };
 
-  lfs = {
-    enable = true;
-  };
+  lfs = { enable = true; };
 
   ignores = [
     ".cache/"
@@ -41,7 +37,8 @@
     s = "status";
     pr = "pull --rebase";
     st = "status";
-    l = "log --graph --pretty='%Cred%h%Creset - %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)' --abbrev-commit --date=relative";
+    l =
+      "log --graph --pretty='%Cred%h%Creset - %C(bold blue)<%an>%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)' --abbrev-commit --date=relative";
     whoops = "reset --hard";
     wipe = "commit -s";
     fix = "rebase --exec 'git commit --amend --no-edit -S' -i origin/develop";
@@ -60,8 +57,6 @@
     pull.rebase = "false";
     init.defaultBranch = "main";
 
-    user = {
-      signingkey = "3987C314C5E59CBF";
-    };
+    user = { signingkey = "3987C314C5E59CBF"; };
   };
 }

@@ -1,33 +1,23 @@
-{ homeDirectory
-, pkgs }:
+{ homeDirectory, pkgs }:
 
 let
   inherit (pkgs) darwin gitAndTools nerdfonts nodePackages python39Packages;
 
   # Some custom helper scripts I use
   customScripts = import ./scripts.nix {
+    inherit homeDirectory;
     inherit (pkgs) writeScriptBin;
     inherit (pkgs.lib) fakeHash;
-    inherit homeDirectory;
   };
 
   # Fonts that I use in my environment
   fontList = (import ./static.nix).fontList;
 
-  fonts = with nerdfonts; [
-    (override { fonts = fontList; })
-  ];
+  fonts = with nerdfonts; [ (override { fonts = fontList; }) ];
 
-  gitTools = with gitAndTools; [
-    diff-so-fancy
-    git-codeowners
-    gitflow
-  ];
+  gitTools = with gitAndTools; [ diff-so-fancy git-codeowners gitflow ];
 
-  nixTools = with pkgs; [
-    cachix
-    lorri
-  ];
+  nixTools = with pkgs; [ cachix lorri ];
 
   macTools = with darwin.apple_sdk.frameworks; [
     CoreServices
@@ -35,25 +25,13 @@ let
     Security
   ];
 
-  rustTools = with pkgs; [
-    cargo-edit
-    cargo-make
-    cargo-profiler
-    cargo-udeps
-  ];
+  rustTools = with pkgs; [ cargo-edit cargo-make cargo-profiler cargo-udeps ];
 
-  python = with pkgs; [
-    python39
-  ];
+  python = with pkgs; [ python39 ];
 
-  pythonTools = with python39Packages; [
-    pip
-    virtualenv
-  ];
+  pythonTools = with python39Packages; [ pip virtualenv ];
 
-  nodeTools = with nodePackages; [
-    pnpm
-  ];
+  nodeTools = with nodePackages; [ pnpm ];
 
   customPackages = import ./custom.nix { inherit pkgs; };
 
@@ -94,6 +72,7 @@ let
     rustup
     skopeo
     sqlite
+    statix
     subversion
     terraform
     terragrunt
@@ -104,4 +83,5 @@ let
     yarn
     youtube-dl
   ];
-in customScripts ++ fonts ++ macTools ++ gitTools ++ nixTools ++ rustTools ++ python ++ pythonTools ++ nodeTools ++ homePackages ++ customPackages
+in customScripts ++ fonts ++ macTools ++ gitTools ++ nixTools ++ rustTools
+++ python ++ pythonTools ++ nodeTools ++ homePackages ++ customPackages

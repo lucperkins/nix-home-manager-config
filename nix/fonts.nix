@@ -1,5 +1,1 @@
-[
-  "CascadiaCode"
-  "FiraCode"
-  "JetBrainsMono"
-]
+[ "CascadiaCode" "FiraCode" "JetBrainsMono" ]

@@ -15,28 +15,26 @@
       system = "aarch64-darwin";
       homeDirectory = "/Users/${username}";
 
-      overrides = (import ./nix/static.nix).overrides;
-      overlays = import ./nix/overlays.nix { inherit (overrides) hugo; };
-
       pkgs = import nixpkgs {
-        inherit overlays system;
+        inherit system;
 
         config = {
           allowUnfree = true;
           xdg = { configHome = "${homeDirectory}"; };
         };
       };
-      homeConfig = (import ./nix/home.nix {
+      homeConfig = (import ./home {
         inherit homeDirectory nixpkgs pkgs system username;
       });
+
+      inherit (home-manager.lib) homeManagerConfiguration;
     in {
-      homeConfigurations.${username} =
-        home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+      homeConfigurations.${username} = homeManagerConfiguration {
+        inherit pkgs;
 
-          modules = [ homeConfig ];
+        modules = [ homeConfig ];
 
-          extraSpecialArgs = { inherit nixpkgs; };
-        };
+        extraSpecialArgs = { inherit nixpkgs; };
+      };
     };
 }

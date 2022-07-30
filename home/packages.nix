@@ -10,10 +10,7 @@ let
     inherit (pkgs.lib) fakeHash;
   };
 
-  # Fonts that I use in my environment
-  fontList = (import ./static.nix).fontList;
-
-  fonts = with nerdfonts; [ (override { fonts = fontList; }) ];
+  fonts = with nerdfonts; [ (override { fonts = [ "CascadiaCode" "FiraCode" "JetBrainsMono" ]; }) ];
 
   gitTools = with gitAndTools; [ diff-so-fancy git-codeowners gitflow ];
 
@@ -69,6 +66,7 @@ let
     ncurses
     nodejs-16_x
     open-policy-agent
+    openssl
     pinentry_mac
     pkg-config
     protobuf

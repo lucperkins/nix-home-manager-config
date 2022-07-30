@@ -18,11 +18,16 @@ in {
 
   nix = {
     package = pkgs.nix;
-    registry.nixpkgs.flake = nixpkgs;
     settings = {
       sandbox = true;
       substituters = [ "https://cache.nixos.org" ];
       experimental-features = [ "flakes" "nix-command" ];
+    };
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
     };
   };
 

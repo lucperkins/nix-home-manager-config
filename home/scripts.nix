@@ -25,5 +25,9 @@ let
     nix-shell --pure --run "$@"
   '';
 
-  all = [ build-push fake hasher git-hash wo run ];
+  xr = writeScriptBin "xr" ''
+    nix run nixpkgs#$1 -- $2
+  '';
+
+  all = [ build-push fake git-hash hasher run wo xr ];
 in all

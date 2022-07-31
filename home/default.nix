@@ -8,12 +8,6 @@ in {
   # initial home config
   home = {
     inherit homeDirectory packages stateVersion username;
-    sessionVariables = {
-      DIRENV_LOG_FORMAT = "";
-      TERMINAL = "alacritty";
-      SHELL = "${pkgs.zsh}/bin/zsh";
-      EDITOR = "${pkgs.neovim}/bin/${editor}";
-    };
   };
 
   nix = {

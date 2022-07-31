@@ -26,6 +26,11 @@ let
   '';
 
   xr = writeScriptBin "xr" ''
+    if [ -z "$1" ]; then
+      echo "no executable specified"
+      exit 1
+    fi
+
     nix run nixpkgs#$1 -- $2
   '';
 

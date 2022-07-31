@@ -1,5 +1,3 @@
-source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-
 # Run the env.sh script (if it exists). That script is meant to contain secrets, tokens, and
 # other things you don't want to put in your Nix config
 if [ -e ~/.env.sh ]; then
@@ -21,9 +19,10 @@ eval "$(buf completion zsh)"
 export PATH="${GOPATH}/bin":"${PATH}"
 export PATH="${HOME}/.cargo/bin":"${PATH}"
 
-
-source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 bindkey -e
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
+export DIRENV_LOG_FORMAT=

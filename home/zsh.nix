@@ -1,7 +1,6 @@
-{ homeDirectory, pkgs, username }:
+{ homeDirectory }:
 
-let fetchFromGitHub = pkgs.fetchFromGitHub;
-in {
+{
   enable = true;
   shellAliases = {
     grep = "grep --color=auto";

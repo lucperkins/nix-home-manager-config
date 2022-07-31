@@ -64,11 +64,6 @@
     enableZshIntegration = true;
   };
 
-  keychain = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   neovim = import ./neovim.nix { inherit (pkgs) vimPlugins; };
 
   nix-index = {
@@ -91,5 +86,5 @@
 
   vscode = import ./vscode.nix { inherit pkgs; };
 
-  zsh = import ./zsh.nix { inherit homeDirectory pkgs username; };
+  zsh = import ./zsh.nix { inherit homeDirectory; };
 }

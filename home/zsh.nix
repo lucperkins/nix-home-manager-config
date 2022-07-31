@@ -15,6 +15,10 @@
     xs = "nix-env --query --available --attr-path ";
     xsp = "nix-env --file '<nixpkgs>' --query --available --attr-path -A ";
     xgc = "nix-env --delete-generations old && nix-store --gc";
+
+    # Direnv helpers
+    da = "direnv allow";
+    dr = "direnv reload";
   };
   enableAutosuggestions = true;
   enableCompletion = true;

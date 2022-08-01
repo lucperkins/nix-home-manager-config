@@ -10,9 +10,12 @@ let
     inherit (pkgs.lib) fakeHash;
   };
 
-  fonts = with nerdfonts; [ (override { fonts = [ "CascadiaCode" "FiraCode" "JetBrainsMono" ]; }) ];
+  fonts = with nerdfonts;
+    [ (override { fonts = [ "CascadiaCode" "FiraCode" "JetBrainsMono" ]; }) ];
 
-  gitTools = with gitAndTools; [ diff-so-fancy git-codeowners gitflow ];
+  gitTools = with gitAndTools;
+    [ diff-so-fancy git-codeowners gitflow ]
+    ++ (with pkgs; [ git-annex git-crypt ]);
 
   nixTools = with pkgs; [ cachix lorri ];
 
@@ -32,6 +35,8 @@ let
 
   customPackages = import ./custom.nix { inherit pkgs; };
 
+  database = with pkgs; [ postgresql_14 ];
+
   homePackages = with pkgs; [
     age
     asciinema
@@ -39,6 +44,7 @@ let
     buf
     bun
     cmake
+    comma
     coreutils
     cue
     dagger
@@ -63,7 +69,9 @@ let
     litestream
     maven
     minikube
+    navi
     ncurses
+    nixfmt
     nodejs-16_x
     open-policy-agent
     openssl
@@ -76,6 +84,7 @@ let
     skopeo
     sqlite
     statix
+    stow
     subversion
     terraform
     terragrunt
@@ -83,15 +92,14 @@ let
     treefmt
     vagrant
     vale
+    wapm-cli
     wget
     yarn
     youtube-dl
     yt-dlp
   ];
 
-  broken = with pkgs; [
-    deno
-    materialize
-  ];
+  broken = with pkgs; [ deno materialize ];
 in customScripts ++ fonts ++ macTools ++ gitTools ++ nixTools ++ rustTools
 ++ python ++ pythonTools ++ nodeTools ++ homePackages ++ customPackages
+++ database

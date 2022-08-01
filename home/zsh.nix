@@ -3,6 +3,7 @@
 {
   enable = true;
   shellAliases = {
+    "," = "comma";
     grep = "grep --color=auto";
     diff = "diff --color=auto";
     dc = "docker compose";
@@ -11,7 +12,8 @@
     garbage = "nix-collect-garbage";
 
     # Nix stuff (https://alexfedoseev.com/blog/post/nix-time)
-    xx = "home-manager switch --flake $HOME/.config/nixpkgs && source ~/.zshrc";
+    xx =
+      "home-manager switch --flake ${homeDirectory}/.config/nixpkgs && source ${homeDirectory}/.zshrc";
     xs = "nix-env --query --available --attr-path ";
     xsp = "nix-env --file '<nixpkgs>' --query --available --attr-path -A ";
     xgc = "nix-env --delete-generations old && nix-store --gc";

@@ -6,9 +6,7 @@ let
   editor = "nvim";
 in {
   # initial home config
-  home = {
-    inherit homeDirectory packages stateVersion username;
-  };
+  home = { inherit homeDirectory packages stateVersion username; };
 
   nix = {
     package = pkgs.nix;
@@ -19,11 +17,7 @@ in {
     };
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-    };
-  };
+  nixpkgs = { config = { allowUnfree = true; }; };
 
   # Allow Nix to handle my fonts
   fonts = { fontconfig = { enable = true; }; };

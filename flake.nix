@@ -23,9 +23,8 @@
           xdg = { configHome = "${homeDirectory}"; };
         };
       };
-      homeConfig = (import ./home {
-        inherit homeDirectory nixpkgs pkgs system username;
-      });
+      homeConfig =
+        (import ./home { inherit homeDirectory nixpkgs pkgs system username; });
 
       inherit (home-manager.lib) homeManagerConfiguration;
     in {
